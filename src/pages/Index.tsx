@@ -31,6 +31,21 @@ const Index = () => {
 
       {/* Header */}
       <Header />
+      
+      {/* Turkish Flag */}
+      <div className="fixed top-4 right-4 z-50">
+        <div className="w-16 h-12 relative rounded shadow-lg">
+          <div className="absolute inset-0 bg-red-600 rounded">
+            <div className="absolute left-[30%] top-1/2 -translate-y-1/2">
+              <div className="relative">
+                <div className="w-3.5 h-3.5 bg-white rounded-full"></div>
+                <div className="absolute left-1 top-0 w-3.5 h-3.5 bg-red-600 rounded-full"></div>
+              </div>
+              <div className="absolute left-3 top-0.5 text-white" style={{fontSize: '10px'}}>★</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Hero */}
       <section id="hero" className="bg-primary text-primary-foreground blueprint-grid relative overflow-hidden pt-28">
