@@ -1,4 +1,5 @@
 import SEO from "@/components/SEO";
+import Header from "@/components/layout/Header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Compass, Hammer, Landmark, Layers, Ruler, Shield } from "lucide-react";
@@ -23,6 +24,7 @@ const Projects = () => {
         description="Blueprint-inspired engineering projects: modern homes, structural systems, and detailed plans."
         canonical="/projects"
       />
+      <Header />
 
       {/* Hero */}
       <section className="bg-primary text-primary-foreground blueprint-grid relative overflow-hidden pt-24">

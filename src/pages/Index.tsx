@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Cpu, Building2, Wrench, Github, Linkedin } from "lucide-react";
 import heroBlueprint from "@/assets/hero-blueprint.jpg";
+import Header from "@/components/layout/Header";
 import portrait from "@/assets/statesman-blueprint.jpg";
 
 const projects = [
@@ -29,24 +30,7 @@ const Index = () => {
       <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
 
       {/* Header */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-background/70 backdrop-blur border-b">
-        <div className="container flex items-center justify-between h-16">
-          <div className="flex items-center gap-3">
-            <img src="/lovable-uploads/a8a36a4a-c8c8-4a1b-80c0-919c24eca173.png" alt="CEZERIS logo" className="h-7 w-auto" />
-            <span className="hidden sm:inline text-sm tracking-widest uppercase text-muted-foreground">Blueprint Engineering</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a className="hover:text-primary transition-colors" href="#about">About</a>
-            <a className="hover:text-primary transition-colors" href="#mission">Mission</a>
-            <a className="hover:text-primary transition-colors" href="#services">Services</a>
-            <a className="hover:text-primary transition-colors" href="/projects">Projects</a>
-            <a className="hover:text-primary transition-colors" href="#contact">Contact</a>
-          </nav>
-          <Button asChild variant="blueprintOutline" size="sm">
-            <a href="/projects" aria-label="Explore portfolio">Explore</a>
-          </Button>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero */}
       <section id="hero" className="bg-primary text-primary-foreground blueprint-grid relative overflow-hidden pt-28">
