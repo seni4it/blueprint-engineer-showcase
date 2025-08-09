@@ -9,6 +9,7 @@ import heroBlueprint from "@/assets/hero-blueprint.jpg";
 import Header from "@/components/layout/Header";
 import portrait from "@/assets/statesman-blueprint.jpg";
 import turkeyFlag from "@/assets/turkey-flag.jpg";
+import { useEffect, useState } from "react";
 
 const projects = [
   { id: 1, title: "Parametric Bridge", image: heroBlueprint, desc: "Algorithmic design with finite element analysis and modular prefabrication." },
@@ -18,6 +19,18 @@ const projects = [
 
 const Index = () => {
   const { toast } = useToast();
+  const [showKababDialog, setShowKababDialog] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowKababDialog(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleKababChoice = () => {
+    window.location.href = "https://www.youtube.com/watch?v=hWOmuL11g8w";
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +42,23 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <SEO title="Ottoman Revolution — Engineer Blueprint Portfolio" description="Explore blueprint-inspired engineering work, services, and contact." canonical="/" />
       <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
+
+      {/* Kabab Popup Dialog */}
+      <Dialog open={showKababDialog} onOpenChange={setShowKababDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-center">🥙 Do you want a kabab? 🥙</DialogTitle>
+          </DialogHeader>
+          <div className="flex gap-4 justify-center mt-6">
+            <Button size="lg" onClick={handleKababChoice}>
+              Yes, I want kabab!
+            </Button>
+            <Button size="lg" variant="outline" onClick={handleKababChoice}>
+              No, maybe later
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Header */}
       <Header />
