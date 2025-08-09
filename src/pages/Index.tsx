@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO title="Ottoman Revolution — Engineer Blueprint Portfolio" description="Explore blueprint-inspired engineering work, services, and contact." canonical="/" />
       <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
 
       {/* Header */}
@@ -37,11 +39,11 @@ const Index = () => {
             <a className="hover:text-primary transition-colors" href="#about">About</a>
             <a className="hover:text-primary transition-colors" href="#mission">Mission</a>
             <a className="hover:text-primary transition-colors" href="#services">Services</a>
-            <a className="hover:text-primary transition-colors" href="#projects">Projects</a>
+            <a className="hover:text-primary transition-colors" href="/projects">Projects</a>
             <a className="hover:text-primary transition-colors" href="#contact">Contact</a>
           </nav>
           <Button asChild variant="blueprintOutline" size="sm">
-            <a href="#projects" aria-label="Explore portfolio">Explore</a>
+            <a href="/projects" aria-label="Explore portfolio">Explore</a>
           </Button>
         </div>
       </header>
