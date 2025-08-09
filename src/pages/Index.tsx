@@ -8,6 +8,7 @@ import { Cpu, Building2, Wrench, Github, Linkedin } from "lucide-react";
 import heroBlueprint from "@/assets/hero-blueprint.jpg";
 import Header from "@/components/layout/Header";
 import portrait from "@/assets/statesman-blueprint.jpg";
+import turkeyFlag from "@/assets/turkey-flag.jpg";
 
 const projects = [
   { id: 1, title: "Parametric Bridge", image: heroBlueprint, desc: "Algorithmic design with finite element analysis and modular prefabrication." },
@@ -32,19 +33,22 @@ const Index = () => {
       {/* Header */}
       <Header />
       
-      {/* Turkish Flag */}
-      <div className="fixed top-4 right-4 z-50">
-        <div className="w-16 h-12 relative rounded shadow-lg">
-          <div className="absolute inset-0 bg-red-600 rounded">
-            <div className="absolute left-[30%] top-1/2 -translate-y-1/2">
-              <div className="relative">
-                <div className="w-3.5 h-3.5 bg-white rounded-full"></div>
-                <div className="absolute left-1 top-0 w-3.5 h-3.5 bg-red-600 rounded-full"></div>
-              </div>
-              <div className="absolute left-3 top-0.5 text-white" style={{fontSize: '10px'}}>★</div>
-            </div>
-          </div>
-        </div>
+      {/* Turkish Flags Display */}
+      <div className="fixed top-0 left-0 right-0 bottom-0 pointer-events-none z-40 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <img 
+            key={i}
+            src={turkeyFlag} 
+            alt="Turkish Flag" 
+            className="absolute w-20 h-14 opacity-90 animate-pulse"
+            style={{
+              left: `${(i % 5) * 20 + Math.random() * 10}%`,
+              top: `${Math.floor(i / 5) * 25 + Math.random() * 10}%`,
+              transform: `rotate(${Math.random() * 30 - 15}deg)`,
+              animationDelay: `${i * 0.2}s`
+            }}
+          />
+        ))}
       </div>
 
       {/* Hero */}
