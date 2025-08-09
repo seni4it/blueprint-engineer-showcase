@@ -8,8 +8,6 @@ import { Cpu, Building2, Wrench, Github, Linkedin } from "lucide-react";
 import heroBlueprint from "@/assets/hero-blueprint.jpg";
 import Header from "@/components/layout/Header";
 import portrait from "@/assets/statesman-blueprint.jpg";
-import turkeyFlag from "@/assets/turkey-flag.jpg";
-import { useEffect, useState } from "react";
 
 const projects = [
   { id: 1, title: "Parametric Bridge", image: heroBlueprint, desc: "Algorithmic design with finite element analysis and modular prefabrication." },
@@ -19,18 +17,6 @@ const projects = [
 
 const Index = () => {
   const { toast } = useToast();
-  const [showKababDialog, setShowKababDialog] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowKababDialog(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleKababChoice = () => {
-    window.location.href = "https://www.youtube.com/watch?v=hWOmuL11g8w";
-  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,43 +29,8 @@ const Index = () => {
       <SEO title="Ottoman Revolution — Engineer Blueprint Portfolio" description="Explore blueprint-inspired engineering work, services, and contact." canonical="/" />
       <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
 
-      {/* Kabab Popup Dialog */}
-      <Dialog open={showKababDialog} onOpenChange={setShowKababDialog}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-2xl text-center">🥙 Do you want a kabab? 🥙</DialogTitle>
-          </DialogHeader>
-          <div className="flex gap-4 justify-center mt-6">
-            <Button size="lg" onClick={handleKababChoice}>
-              Yes, I want kabab!
-            </Button>
-            <Button size="lg" variant="outline" onClick={handleKababChoice}>
-              No, maybe later
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
       {/* Header */}
       <Header />
-      
-      {/* Turkish Flags Display */}
-      <div className="fixed top-0 left-0 right-0 bottom-0 pointer-events-none z-40 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <img 
-            key={i}
-            src={turkeyFlag} 
-            alt="Turkish Flag" 
-            className="absolute w-20 h-14 opacity-90 animate-pulse"
-            style={{
-              left: `${(i % 5) * 20 + Math.random() * 10}%`,
-              top: `${Math.floor(i / 5) * 25 + Math.random() * 10}%`,
-              transform: `rotate(${Math.random() * 30 - 15}deg)`,
-              animationDelay: `${i * 0.2}s`
-            }}
-          />
-        ))}
-      </div>
 
       {/* Hero */}
       <section id="hero" className="bg-primary text-primary-foreground blueprint-grid relative overflow-hidden pt-28">
