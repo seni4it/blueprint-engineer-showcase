@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
-import { Flask, Eye, BarChart } from "lucide-react";
+import { Beaker, Eye, BarChart } from "lucide-react";
 import { useState } from "react";
 
 interface VariantSwitcherProps {
@@ -29,7 +29,7 @@ export function VariantSwitcher({ currentVariant }: VariantSwitcherProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="gap-2">
-              <Flask className="w-4 h-4" />
+              <Beaker className="w-4 h-4" />
               A/B Test: Variant {currentVariant}
             </Button>
           </DropdownMenuTrigger>
