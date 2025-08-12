@@ -8,6 +8,12 @@ import { Cpu, Building2, Wrench, Github, Linkedin } from "lucide-react";
 import heroBlueprint from "@/assets/hero-blueprint.jpg";
 import Header from "@/components/layout/Header";
 import portrait from "@/assets/statesman-blueprint.jpg";
+import { useABTest } from "@/hooks/useABTest";
+import { HeroVariantA } from "@/components/variants/HeroVariantA";
+import { HeroVariantB } from "@/components/variants/HeroVariantB";
+import { useEffect } from "react";
+import { analytics } from "@/lib/analytics";
+import { VariantSwitcher } from "@/components/VariantSwitcher";
 
 const projects = [
   { id: 1, title: "Parametric Bridge", image: heroBlueprint, desc: "Algorithmic design with finite element analysis and modular prefabrication." },
@@ -17,6 +23,20 @@ const projects = [
 
 const Index = () => {
   const { toast } = useToast();
+  const { variant, trackConversion } = useABTest({ 
+    experimentId: 'hero_test_1' 
+  });
+  
+  useEffect(() => {
+    // Initialize Google Analytics (replace with your GA4 measurement ID)
+    analytics.init('G-XXXXXXXXXX');
+  }, []);
+  
+  const handleCtaClick = () => {
+    trackConversion('hero_cta_click');
+    // Navigate to projects or open contact form
+    window.location.href = '#projects';
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,24 +51,16 @@ const Index = () => {
 
       {/* Header */}
       <Header />
+      
+      {/* Variant Switcher for testing */}
+      <VariantSwitcher currentVariant={variant} />
 
-      {/* Hero */}
-      <section id="hero" className="bg-primary text-primary-foreground blueprint-grid relative overflow-hidden pt-28">
-        <div className="container grid md:grid-cols-2 gap-10 items-center min-h-[80vh]">
-          <div className="animate-enter">
-            <p className="uppercase tracking-[0.35em] text-sm text-accent/80">Minimal Blueprint</p>
-            <h1 className="font-heading title-intersect uppercase tracking-widest text-5xl md:text-7xl mt-3">The Ottoman Revolution</h1>
-            <p className="mt-6 text-lg text-primary-foreground/80 max-w-prose">Engineering Portfolio — structured like a technical blueprint: clean lines, precise thinking, and attention to detail.</p>
-            <div className="mt-8 flex gap-4">
-              <Button variant="hero" size="lg">Explore Portfolio</Button>
-              <Button variant="outline" size="lg">About Me</Button>
-            </div>
-          </div>
-          <div className="relative max-md:order-first">
-            <img src={heroBlueprint} alt="Blueprint wireframe cityscape" className="w-full h-auto rounded-lg border border-accent/30 shadow-sm animate-fade-in" loading="lazy" />
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - A/B Test */}
+      {variant === 'A' ? (
+        <HeroVariantA onCtaClick={handleCtaClick} />
+      ) : (
+        <HeroVariantB onCtaClick={handleCtaClick} />
+      )}
 
       <main id="main" className="flex flex-col">
         {/* About */}

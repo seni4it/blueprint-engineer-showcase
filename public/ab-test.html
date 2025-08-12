@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // A/B Testing Script - Add this to your index.html <head> section
+    (function() {
+      function getVariant() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const forced = urlParams.get('variant');
+
+        // If URL param is set, store it and use it
+        if (forced && ['A', 'B'].includes(forced.toUpperCase())) {
+          localStorage.setItem('ab-variant', forced.toUpperCase());
+          return forced.toUpperCase();
+        }
+
+        // Otherwise use stored variant or pick randomly
+        let variant = localStorage.getItem('ab-variant');
+        if (!variant) {
+          variant = Math.random() > 0.5 ? 'A' : 'B';
+          localStorage.setItem('ab-variant', variant);
+        }
+        return variant;
+      }
+
+      // Store globally for React to use
+      window.AB_VARIANT = getVariant();
+      
+      // Add class to body for CSS-based variations
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('variant-' + window.AB_VARIANT.toLowerCase());
+      });
+    })();
+  </script>
+  
+  <!-- Google Analytics 4 - Replace GA_MEASUREMENT_ID with your actual ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+    
+    // Track variant impression
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.gtag && window.AB_VARIANT) {
+        gtag('event', 'experiment_impression', {
+          experiment_id: 'hero_test_1',
+          variant_id: window.AB_VARIANT
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- 
+    INSTRUCTIONS FOR INTEGRATION:
+    
+    1. Copy the scripts from the <head> section above to your index.html
+    2. Replace GA_MEASUREMENT_ID with your actual Google Analytics ID
+    3. The variant will be available as window.AB_VARIANT
+    
+    To preview variants:
+    - Variant A: yoursite.com?variant=A
+    - Variant B: yoursite.com?variant=B
+    
+    To track conversions in your React code:
+    gtag('event', 'conversion', {
+      event_category: 'engagement',
+      event_label: 'button_click',
+      value: window.AB_VARIANT
+    });
+  -->
+</body>
+</html>
