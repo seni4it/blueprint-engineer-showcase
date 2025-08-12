@@ -13,7 +13,6 @@ import { HeroVariantA } from "@/components/variants/HeroVariantA";
 import { HeroVariantB } from "@/components/variants/HeroVariantB";
 import { useEffect } from "react";
 import { analytics } from "@/lib/analytics";
-import { VariantSwitcher } from "@/components/VariantSwitcher";
 
 const projects = [
   { id: 1, title: "Parametric Bridge", image: heroBlueprint, desc: "Algorithmic design with finite element analysis and modular prefabrication." },
@@ -51,9 +50,6 @@ const Index = () => {
 
       {/* Header */}
       <Header />
-      
-      {/* Variant Switcher for testing */}
-      <VariantSwitcher currentVariant={variant} />
 
       {/* Hero Section - A/B Test */}
       {variant === 'A' ? (
